@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Elden Ring</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #fff;
+            margin-top: 40px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        #contador-container {
+            display: inline-block;
+            padding: 30px;
+            border: 5px solid #333;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #contador {
+            font-size: 2.5em;
+            color: #fff;
+            letter-spacing: 2px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .time-box {
+            display: inline-block;
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.5em;
+            margin-top: 5px;
+            color: #ddd;
+        }
+
+        body {
+            background-image: url('barros.png');
+            background-repeat: repeat;
+            background-size: 120px 120px; 
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            #contador-container {
+                padding: 20px;
+            }
+
+            #contador {
+                font-size: 2em;
+            }
+
+            .time-box span {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Tempo restante para o João zerar o Elden Ring</h1>
+
+    <div id="contador-container">
+        <div id="contador">
+            <div class="time-box">
+                <span id="dias">00</span>
+                Dias
+            </div>
+            <div class="time-box">
+                <span id="horas">00</span>
+                Horas
+            </div>
+            <div class="time-box">
+                <span id="minutos">00</span>
+                Minutos
+            </div>
+            <div class="time-box">
+                <span id="segundos">00</span>
+                Segundos
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function atualizarContador() {
+            const agora = new Date();
+            const finalDoJogo = new Date("2024-12-31T23:59:59");
+            const diferenca = finalDoJogo - agora;
+
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+            const segundos = Math.floor((diferenca / 1000) % 60);
+
+            document.getElementById("dias").textContent = dias.toString().padStart(2, '0');
+            document.getElementById("horas").textContent = horas.toString().padStart(2, '0');
+            document.getElementById("minutos").textContent = minutos.toString().padStart(2, '0');
+            document.getElementById("segundos").textContent = segundos.toString().padStart(2, '0');
+        }
+
+        setInterval(atualizarContador, 1000);
+    </script>
+</body>
+</html>
